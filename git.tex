@@ -93,7 +93,7 @@
 	\setbeamercolor{frametitle}{fg=OneFg}
 }
 
-\subject{Version Control -- eine Einführun}
+\subject{Git in Depth}
 
 \newcommand{\todo}{\textcolor{red}{\textbf{ \textsf{TODO} }}\\}
 
@@ -103,27 +103,15 @@
 \setbeamercolor{framesubtitle}{fg=Christian}
 \setbeamercolor{item}{fg=Christian}
 
-\title[Version Control]{Version Control -- eine Einführung}
+\title[Git]{Git in Depth}
 \subtitle[Zoran Zari\'c]{Zoran Zari\'c}
 \author[Zoran Zari\'c]{Zoran Zari\'c}
 
 \begin{frame}
-	\fontsize{30}{10}\selectfont Version Control
+	\fontsize{30}{10}\selectfont Git in Depth
 	\vspace*{0.5cm}
 
-	\fontsize{20}{10}\selectfont eine Einführung
-\end{frame}
-
-\begin{frame}
-	\frametitle{Zoran Zari\'c}
-	\begin{itemize}
-		\item
-			Informatik Student an der TU Darmstadt seit 2008
-		\item
-			Git seit Mitte 2009
-		\item
-			bup seit April 2010
-	\end{itemize}
+	\fontsize{20}{10}\selectfont \#mrmcd-git
 \end{frame}
 
 \begin{frame}
@@ -141,6 +129,8 @@
 			Hintergründe
 		\item
 			Tools
+		\item
+			Hands-On
 	\end{enumerate}
 \end{frame}
 
@@ -205,8 +195,6 @@
 		\item
 			``stupid content tracker''
 		\item
-			``content addressable''
-		\item
 			Verteiltes Versionierungssystem
 			\begin{itemize}
 				\item
@@ -218,6 +206,8 @@
 			Linus Torvalds begann Entwicklung 2005
 		\item
 			Snapshot- statt Diff-basiert
+		\item
+			``content addressed''
 	\end{itemize}
 \end{frame}
 
@@ -261,33 +251,6 @@
 		\end{verbatim}
 		\end{column}
 	\end{columns}
-\end{frame}
-
-\subsection{Installation}
-\begin{frame}[fragile]
-	\frametitle{Installation}
-	\begin{itemize}
-		\item
-			Windows\\
-			mysysgit \url{http://code.google.com/p/msysgit/}\\
-			TortoiseGit \url{http://code.google.com/p/tortoisegit/}
-		\item
-			Ubuntu\\
-			\verb|aptitude install git|
-		\item
-			OSX\\
-			\url{http://code.google.com/p/git-osx-installer/}
-	\end{itemize}
-\end{frame}
-
-\subsection{Beispiel}
-\begin{frame}[fragile]
-	\frametitle{Beispiele}
-	\framesubtitle{Config}
-	\begin{verbatim}
-	$ git config user.name "Zoran Zaric"
-	$ git config user.email "zz@zoranzaric.de"
-	\end{verbatim}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -474,6 +437,17 @@
 	\end{columns}
 \end{frame}
 
+\begin{frame}
+	\fontsize{30}{10}\selectfont Und wenn was schief geht?
+\end{frame}
+
+\begin{frame}
+	\fontsize{30}{10}\selectfont Und wenn was schief geht?
+	\vspace*{0.5cm}
+
+	\fontsize{20}{10}\selectfont reflog to the rescue!
+\end{frame}
+
 \section{Hintergründe}
 \begin{frame}
 	\frametitle{Basics}
@@ -622,6 +596,9 @@
 \end{frame}
 
 \begin{frame}
+	\fontsize{30}{10}\selectfont Let's go deeper\ldots
+\end{frame}
+\begin{frame}
 	\frametitle{Weiterführendes / Nachschlagewerk}
 	\begin{itemize}
 		\item
@@ -654,7 +631,7 @@
 		\item
 			@zoranzaric\\[0.5cm]
 		\item
-			Slides: \url{zoranzaric.de/git-ophase12.pdf}
+			Slides: \url{zoranzaric.de/git-mrmcd2012.pdf}
 	\end{itemize}
 \end{frame}
 
