@@ -12,6 +12,8 @@
 
 \usepackage{amssymb}
 
+\usepackage{graphics}
+
 \usepackage{tikz}
 \usetikzlibrary{shapes,fadings}
 
@@ -112,18 +114,9 @@
 	\vspace*{0.5cm}
 
 	\fontsize{20}{10}\selectfont eine Einführung
-\end{frame}
-
-\begin{frame}
-	\frametitle{Zoran Zari\'c}
-	\begin{itemize}
-		\item
-			Informatik Student an der TU Darmstadt seit 2008
-		\item
-			Git seit Mitte 2009
-		\item
-			bup seit April 2010
-	\end{itemize}
+	\only<2>{
+		(Ja, mit Git)
+	}
 \end{frame}
 
 \begin{frame}
@@ -132,7 +125,7 @@
 		\item
 			Fragen
 		\item
-			Basics
+			Begriffe
 		\item
 			Git
 		\item
@@ -198,14 +191,41 @@
 	\end{verbatim}
 \end{frame}
 
+\begin{frame}
+	\frametitle{Begriffe}
+	\Huge{Begriffe!}\\
+	\only<2>{\fontsize{20}{10}\selectfont yay!}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Begriffe}
+	\Huge{Repository}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Begriffe}
+	\Huge{Working Copy}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Begriffe}
+	\Huge{Commit}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Begriffe}
+	\Huge{Branches, Tags}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Begriffe}
+	\Huge{SHA1}
+\end{frame}
+
 \subsection{Git}
 \begin{frame}
 	\frametitle{Git}
 	\begin{itemize}
-		\item
-			``stupid content tracker''
-		\item
-			``content addressable''
 		\item
 			Verteiltes Versionierungssystem
 			\begin{itemize}
@@ -218,16 +238,18 @@
 			Linus Torvalds begann Entwicklung 2005
 		\item
 			Snapshot- statt Diff-basiert
+		\item
+			``content addressed''
 	\end{itemize}
 \end{frame}
 
 \begin{frame}
-	\frametitle{Fragen}
+	\frametitle{Git}
 	\Huge{Diffs? Snapshots?}
 \end{frame}
 
 \begin{frame}[fragile]
-	\frametitle{Fragen}
+	\frametitle{Git}
 	\framesubtitle{Diffs? Snapshots?}
 	\begin{columns}[T]
 		\begin{column}{4.5cm}
@@ -285,8 +307,11 @@
 	\frametitle{Beispiele}
 	\framesubtitle{Config}
 	\begin{verbatim}
-	$ git config user.name "Zoran Zaric"
-	$ git config user.email "zz@zoranzaric.de"
+	$ git config --global user.name "Zoran Zaric"
+	$ git config --global user.email "zz@zoranzaric.de"
+	$ git config --global branch.autosetuprebase always
+	$ git config --global color.ui auto
+	$ git config --global tig.show-rev-graph yes
 	\end{verbatim}
 \end{frame}
 
@@ -380,7 +405,7 @@
 	\frametitle{Beispiele}
 	\framesubtitle{Remotes}
 	\begin{verbatim}
-	$ git clone https://github.com/apenwarr/bup.git
+	$ git clone https://github.com/bup/bup.git
 	$ git remote rename origin upstream
 	\end{verbatim}
 
@@ -474,130 +499,34 @@
 	\end{columns}
 \end{frame}
 
-\section{Hintergründe}
 \begin{frame}
-	\frametitle{Basics}
-	\begin{itemize}
-		\item
-			SHA1
-		\item
-			DAG (Directed Acyclic Graph)\\
-			gerichteter zyklenfreier Graph
-	\end{itemize}
+	\fontsize{30}{10}\selectfont zOMG!
+	\vspace*{0.5cm}
+
+	\fontsize{20}{10}\selectfont alles kaputt!!!
+	\vspace*{0.25cm}
+
+	\only<2> {
+		\fontsize{20}{10}\selectfont reflog to the rescue!
+	}
 \end{frame}
 
 \begin{frame}[fragile]
-	\frametitle{Ein Repository}
-	\begin{columns}[T]
-		\begin{column}{4.5cm}
-			\begin{itemize}
-				\item<1->
-					BLOBs\\[0.25cm]
-					\begin{tikzpicture}
-						\node (e69de29) [blob]{e69de29};
-					\end{tikzpicture}
-				\item<2->
-					Trees\\[0.25cm]
-					\begin{tikzpicture}
-						\node (82e3a75) [tree]{82e3a75};
-					\end{tikzpicture}
-				\item<3->
-					Commits\\[0.25cm]
-					\begin{tikzpicture}
-						\node (3dfe461f) [commit]{3dfe461f};
-					\end{tikzpicture}
-				\item<4->
-					Tags \& Branches\\[0.25cm]
-					\begin{tikzpicture}
-						\node (v01) [tag]{v0.1};
-						\node (master) [branch, right of=v01, node distance=1.5cm]{master};
-					\end{tikzpicture}
-			\end{itemize}
-		\end{column}
-		\begin{column}{5.5cm}
-			\only<1>{
-				Hello World
-			}
-			\only<2>{
-				100644 blob 5e1c309dae7f45e0f39b1bf3ac3cd9db12e7d689    README
-			}
-			\only<3>{
-				tree a3d703e579dc9baae20456eb63fa49f5e4e7c9b4\\
-				author Zoran Zaric \textless zz@zoranzaric.de\textgreater 1314498536 +0200\\
-				committer Zoran Zaric \textless zz@zoranzaric.de\textgreater 1314498536 +0200\\
-
-				Example commit
-			}
-			\only<5>{
-				\begin{tikzpicture}
-					\node (3dfe461f) [commit]{3dfe461f};
-					\node (82e3a75) [tree, right of=3dfe461f, node distance=2cm]{82e3a75};
-					\draw[-latex] (3dfe461f) -- (82e3a75);
-					\node (e69de29) [blob, right of=82e3a75, node distance=2cm]{e69de29};
-					\draw[-latex] (82e3a75) -- (e69de29);
-
-					\node (25b2be3) [commit, below of=3dfe461f, node distance=2cm]{25b2be3};
-					\draw[-latex] (25b2be3) -- (3dfe461f);
-					\node (78af04f) [tree, right of=25b2be3, node distance=2cm]{78af04f};
-					\draw[-latex] (25b2be3) -- (78af04f);
-					\draw[-latex] (78af04f) -- (e69de29);
-					\node (41c28e8) [blob, right of=78af04f, node distance=2cm]{41c28e8};
-					\draw[-latex] (78af04f) -- (41c28e8);
-
-					\node (master) [branch, below of=25b2be3, node distance=2cm]{master};
-					\draw[-latex] (master) -- (25b2be3);
-
-					\node (v10) [tag, right of=master, node distance=2cm]{v1.0};
-					\draw[-latex] (v10) -- (25b2be3);
-				\end{tikzpicture}
-			}
-		\end{column}
-	\end{columns}
-\end{frame}
-
-\begin{frame}
-	\frametitle{Ein Repository}
-	\begin{columns}[T]
-		\begin{column}{4.5cm}
-			\begin{itemize}
-				\item
-					DAG\\ Directed Acyclic Graph
-				\item<2->
-					Packfiles
-			\end{itemize}
-		\end{column}
-		\begin{column}{5.5cm}
-			\only<1>{
-				\begin{tikzpicture}
-					\node (3dfe461f) [commit]{3dfe461f};
-					\node (init) [tag, right of=3dfe461f, node distance=2cm]{init};
-					\draw[-latex] (init) -- (3dfe461f);
-					\node (25b2be3) [commit, below of=3dfe461f, node distance=2cm]{25b2be3};
-					\draw[-latex] (25b2be3) -- (3dfe461f);
-					\node (master) [branch, below of=25b2be3, node distance=2cm]{master};
-					\draw[-latex] (master) -- (25b2be3);
-					\node (v01) [tag, left of=25b2be3, node distance=2cm]{v0.1};
-					\draw[-latex] (v01) -- (25b2be3);
-
-					\node (abcdef) [commit, right of=25b2be3, node distance=2cm]{abcdef};
-					\draw[-latex] (abcdef) -- (3dfe461f);
-					\node (dev) [branch, below of=abcdef, node distance=2cm]{dev};
-					\draw[-latex] (dev) -- (abcdef);
-				\end{tikzpicture}
-			}
-			\only<2>{
-				\begin{tikzpicture}
-					\node (e69de29) [blob]{e69de29};
-					\node (82e3a75) [tree, below of=e69de29]{82e3a75};
-					\node (3dfe461f) [commit, below of=82e3a75]{3dfe461f};
-
-					\node (41c28e8) [blob, below of=3dfe461f]{41c28e8};
-					\node (78af04f) [tree, below of=41c28e8]{78af04f};
-					\node (25b2be3) [commit, below of=78af04f]{25b2be3};
-				\end{tikzpicture}
-			}
-		\end{column}
-	\end{columns}
+	\frametitle{reflog}
+	\fontsize{6}{10}\selectfont reflog to the rescue!
+	\begin{verbatim}
+	$ git reflog
+	60f023c HEAD@{0}: checkout: moving from git-in-depth to ophase
+	6ed550f HEAD@{1}: checkout: moving from ophase to git-in-depth
+	60f023c HEAD@{2}: checkout: moving from 60f023cf1991929157518fbb54f2282f77cc6d1b to ophase
+	60f023c HEAD@{3}: checkout: moving from git-in-depth to 60f023cf1991929157518fbb54f2282f77cc6d1b
+	6ed550f HEAD@{4}: checkout: moving from git-in-depht to git-in-depth
+	6ed550f HEAD@{5}: checkout: moving from master to git-in-depht
+	6ed550f HEAD@{6}: commit: mrmcd
+	60f023c HEAD@{7}: commit: Ophase SS12
+	ae6424d HEAD@{8}: commit: Import talk version from Ophase WS11/12
+	538f510 HEAD@{9}: commit (initial): init
+	\end{verbatim}
 \end{frame}
 
 \section{Tools}
@@ -633,6 +562,8 @@
 		\item
 			\url{http://blip.tv/scott-chacon}
 		\item
+			\url{https://scm.rbg.informatik.tu-darmstadt.de/}
+		\item
 			28c3: bup: Git for backups\\
 			\url{http://www.youtube.com/watch?v=u_rOi2OVvwU}
 	\end{itemize}
@@ -654,8 +585,12 @@
 		\item
 			@zoranzaric\\[0.5cm]
 		\item
-			Slides: \url{zoranzaric.de/git-ophase12.pdf}
+			Slides: \url{zoranzaric.de/git-ophase1213.pdf}
 	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\includegraphics{qr-code.png}
 \end{frame}
 
 \end{document}
