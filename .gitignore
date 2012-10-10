@@ -1,0 +1,12 @@
+# temporary files
+*.aux
+*.fdb_latexmk
+*.log
+*.nav
+*.out
+*.snm
+*.toc
+*.vrb
+
+# build artifacts
+*.pdf
